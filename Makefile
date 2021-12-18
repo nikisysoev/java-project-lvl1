@@ -13,5 +13,5 @@ check-updates:
 lint:
 	./gradlew checkstyleMain
 
-build: clean lint
+build: clean
 	./gradlew build
