@@ -43,6 +43,20 @@ public class Engine {
         return "no";
     }
 
+    public static String getCorrectAnswer(int randomNumber1, int randomNumber2) {
+        if (randomNumber1 == randomNumber2) {
+            return Integer.toString(randomNumber1);
+        }
+        int min = Math.min(randomNumber1, randomNumber2);
+        for (int i = min; i > 0; i--) {
+            if (randomNumber1 % i == 0 && randomNumber2 % i == 0) {
+                return Integer.toString(i);
+            }
+        }
+        return "";
+    }
+
+
     public static void checkAnswersOfUser(String correctAnswer, String answer) {
         if (correctAnswer.equals(answer)) {
             System.out.println("Correct!");
