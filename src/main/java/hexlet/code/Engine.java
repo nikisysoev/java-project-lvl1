@@ -3,8 +3,10 @@ package hexlet.code;
 public class Engine {
     public static final int NUMBER_OF_CHECKS = 3;
     public static final int RANGE_OF_RANDOM_NUMBERS = 99;
+    public static final int RANGE_OF_RANDOM_NUMBERS_PROGRESSION = 5;
     private static final int FIRST_RANGE_OF_RANDOM_NUMBERS = 99 / 3;
     private static final int SECOND_RANGE_OF_RANDOM_NUMBERS = FIRST_RANGE_OF_RANDOM_NUMBERS * 2;
+
     private static boolean isUserMakeMistake = false;
 
     public static boolean getIsUserMakeMistake() {
@@ -56,6 +58,10 @@ public class Engine {
         return "";
     }
 
+    public static String getCorrectAnswer(int firstNumberOfProgression, int addition, int positionOfUnknownNumber) {
+        int correctAnswer = firstNumberOfProgression + positionOfUnknownNumber * addition;
+        return Integer.toString(correctAnswer);
+    }
 
     public static void checkAnswersOfUser(String correctAnswer, String answer) {
         if (correctAnswer.equals(answer)) {
