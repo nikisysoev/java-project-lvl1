@@ -32,15 +32,19 @@ public class App {
             case "3":
                 Cli.greet();
                 Calc.start();
+                break;
             case "4":
                 Cli.greet();
                 GCD.start();
+                break;
             case "5":
                 Cli.greet();
                 Progression.start();
+                break;
             case "6":
                 Cli.greet();
                 Prime.start();
+                break;
             default:
                 break;
         }
