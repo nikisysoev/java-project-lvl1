@@ -8,13 +8,14 @@ public class Progression {
         System.out.println("What number is missing in the progression?");
 
         var i = 0;
-        while (i < Engine.NUMBER_OF_CHECKS && !Engine.getIsUserMakeMistake()) {
+        while (i < Engine.NUMBER_OF_ATTEMPTS && !Engine.getHasUserMistake()) {
             int firstNumberOfProgression = Engine.makeRandomNumber(Engine.RANGE_OF_RANDOM_NUMBERS);
             int addition = Engine.makeRandomNumber(Engine.RANGE_OF_RANDOM_NUMBERS_PROGRESSION) + 1;
-            int countNumbers = Engine.RANGE_OF_RANDOM_NUMBERS_PROGRESSION + addition - 1;
-            int positionOfUnknownNumber = Engine.makeRandomNumber(countNumbers);
+            int countNumInProgression = Engine.RANGE_OF_RANDOM_NUMBERS_PROGRESSION + addition - 1;
+            int positionOfUnknownNumber = Engine.makeRandomNumber(countNumInProgression);
 
-            String[] allNumbers = new String[countNumbers];
+            String[] allNumbers = new String[countNumInProgression];
+
             String correctAnswer = Engine.getCorrectAnswer(firstNumberOfProgression, addition, positionOfUnknownNumber);
 
             System.out.print("Question: ");
@@ -26,14 +27,14 @@ public class Progression {
                     System.out.print(allNumbers[k] + " ");
                 }
             }
-
             System.out.print("\nYour answer: ");
+
             Cli.readInput();
             String answer = Cli.getInput();
             Engine.checkAnswersOfUser(correctAnswer, answer);
             i++;
         }
-        Engine.checkIsUserMakeMistake();
+        Engine.checkHasUserMistake();
     }
 }
 

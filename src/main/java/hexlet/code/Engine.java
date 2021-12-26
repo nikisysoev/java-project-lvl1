@@ -1,16 +1,22 @@
 package hexlet.code;
 
+import hexlet.code.games.Calc;
+import hexlet.code.games.Even;
+import hexlet.code.games.GCD;
+import hexlet.code.games.Prime;
+import hexlet.code.games.Progression;
+
 public class Engine {
-    public static final int NUMBER_OF_CHECKS = 3;
+    public static final int NUMBER_OF_ATTEMPTS = 3;
     public static final int RANGE_OF_RANDOM_NUMBERS = 99;
     public static final int RANGE_OF_RANDOM_NUMBERS_PROGRESSION = 5;
-    private static final int FIRST_RANGE_OF_RANDOM_NUMBERS = 99 / 3;
-    private static final int SECOND_RANGE_OF_RANDOM_NUMBERS = FIRST_RANGE_OF_RANDOM_NUMBERS * 2;
+    private static final int FIRST_RANGE_OF_RANDOM_NUM_CALC = 99 / 3;
+    private static final int SECOND_RANGE_OF_RANDOM_NUM_CALC = FIRST_RANGE_OF_RANDOM_NUM_CALC * 2;
 
-    private static boolean isUserMakeMistake = false;
+    private static boolean hasUserMistake = false;
 
-    public static boolean getIsUserMakeMistake() {
-        return isUserMakeMistake;
+    public static boolean getHasUserMistake() {
+        return hasUserMistake;
     }
 
     public static int makeRandomNumber(int rangeOfRandomNumbers) {
@@ -19,10 +25,10 @@ public class Engine {
 
     public static String makeRandomOperation(int rangeOfRandomNumbers) {
         int randomNumber = makeRandomNumber(rangeOfRandomNumbers);
-        if (randomNumber < FIRST_RANGE_OF_RANDOM_NUMBERS) {
+        if (randomNumber < FIRST_RANGE_OF_RANDOM_NUM_CALC) {
             return "+";
         }
-        if (randomNumber < SECOND_RANGE_OF_RANDOM_NUMBERS) {
+        if (randomNumber < SECOND_RANGE_OF_RANDOM_NUM_CALC) {
             return "-";
         }
         return "*";
@@ -80,16 +86,60 @@ public class Engine {
         if (correctAnswer.equals(answer)) {
             System.out.println("Correct!");
         } else {
-            isUserMakeMistake = true;
+            hasUserMistake = true;
             System.out.print("'" + answer + "'" + " is wrong answer ;(. ");
             System.out.println("Correct answer was " + "'" + correctAnswer + "'" + ".");
             System.out.println("Let's try again, " + Cli.getUserName() + "!");
         }
     }
 
-    public static void checkIsUserMakeMistake() {
-        if (!isUserMakeMistake) {
+    public static void checkHasUserMistake() {
+        if (!hasUserMistake) {
             System.out.println("Congratulations, " + Cli.getUserName() + "!");
+        }
+    }
+
+    public static void menuStart() {
+        System.out.println("Please enter the game number and press Enter.");
+        System.out.println("1 - Greet");
+        System.out.println("2 - Even");
+        System.out.println("3 - Calc");
+        System.out.println("4 - GCD");
+        System.out.println("5 - Progression");
+        System.out.println("6 - Prime");
+        System.out.println("0 - Exit");
+        System.out.print("Your choice: ");
+    }
+
+    public static void chooseGame() {
+        Cli.readInput();
+        String numberOfGame = Cli.getInput();
+        switch (numberOfGame) {
+            case "1":
+                Cli.greet();
+                break;
+            case "2":
+                Cli.greet();
+                Even.start();
+                break;
+            case "3":
+                Cli.greet();
+                Calc.start();
+                break;
+            case "4":
+                Cli.greet();
+                GCD.start();
+                break;
+            case "5":
+                Cli.greet();
+                Progression.start();
+                break;
+            case "6":
+                Cli.greet();
+                Prime.start();
+                break;
+            default:
+                break;
         }
     }
 }
