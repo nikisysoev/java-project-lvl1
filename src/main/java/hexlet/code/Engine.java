@@ -63,6 +63,19 @@ public class Engine {
         return Integer.toString(correctAnswer);
     }
 
+    public static String getCorrectAnswer(int randomNumber, String prime) {
+        var count = 0;
+        for (int i = 2; i <= randomNumber; i++) {
+            if (randomNumber % i == 0) {
+                count++;
+            }
+        }
+        if (count == 1) {
+            return "yes";
+        }
+        return "no";
+    }
+
     public static void checkAnswersOfUser(String correctAnswer, String answer) {
         if (correctAnswer.equals(answer)) {
             System.out.println("Correct!");
