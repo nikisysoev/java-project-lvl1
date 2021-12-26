@@ -14,4 +14,5 @@ lint:
 	./gradlew checkstyleMain
 
 build: clean
+	./gradlew install
 	./gradlew build
