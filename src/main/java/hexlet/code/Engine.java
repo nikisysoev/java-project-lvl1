@@ -55,6 +55,12 @@ public class Engine {
         if (randomNumber1 == randomNumber2) {
             return Integer.toString(randomNumber1);
         }
+        if (randomNumber1 == 0) {
+            return Integer.toString(randomNumber2);
+        }
+        if (randomNumber2 == 0) {
+            return Integer.toString(randomNumber1);
+        }
         int min = Math.min(randomNumber1, randomNumber2);
         for (int i = min; i > 0; i--) {
             if (randomNumber1 % i == 0 && randomNumber2 % i == 0) {
