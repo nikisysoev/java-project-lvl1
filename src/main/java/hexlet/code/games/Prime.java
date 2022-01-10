@@ -1,26 +1,39 @@
 package hexlet.code.games;
 
-import hexlet.code.Cli;
 import hexlet.code.Engine;
 
 public class Prime {
+    private static final String RULE_OF_THE_GAME = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+
     public static void start() {
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
+        Engine.showRuleOfGame(RULE_OF_THE_GAME);
 
         var i = 0;
         while (i < Engine.NUMBER_OF_ATTEMPTS && !Engine.getHasUserMistake()) {
             int randomNumber = Engine.makeRandomNumber(Engine.RANGE_OF_RANDOM_NUMBERS);
 
-            String correctAnswer = Engine.getCorrectAnswer(randomNumber, "prime");
+            Engine.showQuestionOfGame(Integer.toString(randomNumber));
 
-            System.out.println("Question: " + randomNumber);
-            System.out.print("Your answer: ");
+            String correctAnswer = getCorrectAnswer(randomNumber);
 
-            Cli.readInput();
-            String answer = Cli.getInput();
+            String answer = Engine.getAnswerOfUser();
+
             Engine.checkAnswersOfUser(correctAnswer, answer);
             i++;
         }
         Engine.checkHasUserMistake();
+    }
+
+    public static String getCorrectAnswer(int randomNumber) {
+        var count = 0;
+        for (int i = 2; i <= randomNumber; i++) {
+            if (randomNumber % i == 0) {
+                count++;
+            }
+        }
+        if (count == 1) {
+            return "yes";
+        }
+        return "no";
     }
 }
