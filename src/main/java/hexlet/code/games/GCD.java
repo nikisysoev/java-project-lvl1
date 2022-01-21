@@ -4,25 +4,23 @@ import hexlet.code.Engine;
 
 public class GCD {
     private static final String RULE_OF_THE_GAME = "Find the greatest common divisor of given numbers.";
+    private static final int NUMBER_OF_ATTEMPTS = 3;
+    private static final int RANGE_OF_RANDOM_NUMBERS = 99;
 
     public static void start() {
-        Engine.showRuleOfGame(RULE_OF_THE_GAME);
-
-        var i = 0;
-        while (i < Engine.NUMBER_OF_ATTEMPTS && !Engine.getHasUserMistake()) {
-            int randomNumber1 = Engine.makeRandomNumber(Engine.RANGE_OF_RANDOM_NUMBERS);
-            int randomNumber2 = Engine.makeRandomNumber(Engine.RANGE_OF_RANDOM_NUMBERS);
-
-            Engine.showQuestionOfGame(randomNumber1 + " " + randomNumber2);
-
-            String correctAnswer = Integer.toString(getCorrectAnswer(randomNumber1, randomNumber2));
-
-            String answer = Engine.getAnswerOfUser();
-
-            Engine.checkAnswersOfUser(correctAnswer, answer);
-            i++;
+        String[] questions = new String[NUMBER_OF_ATTEMPTS];
+        String[] correctAnswers = new String[NUMBER_OF_ATTEMPTS];
+        for (int i = 0; i < NUMBER_OF_ATTEMPTS; i++) {
+            int randomNumber1 = makeRandomNumber(RANGE_OF_RANDOM_NUMBERS);
+            int randomNumber2 = makeRandomNumber(RANGE_OF_RANDOM_NUMBERS);
+            questions[i] = randomNumber1 + " " + randomNumber2;
+            correctAnswers[i] = Integer.toString(getCorrectAnswer(randomNumber1, randomNumber2));
         }
-        Engine.checkHasUserMistake();
+        Engine.makeGame(RULE_OF_THE_GAME, questions, correctAnswers);
+    }
+
+    public static int makeRandomNumber(int rangeOfRandomNumbers) {
+        return (int) (Math.random() * rangeOfRandomNumbers);
     }
 
     public static int getCorrectAnswer(int randomNumber1, int randomNumber2) {

@@ -1,34 +1,20 @@
 package hexlet.code;
 
 public class Engine {
-    public static final int NUMBER_OF_ATTEMPTS = 3;
-    public static final int RANGE_OF_RANDOM_NUMBERS = 99;
+    private static final int NUMBER_OF_ATTEMPTS = 3;
 
-    private static boolean hasUserMistake = false;
-
-    public static boolean getHasUserMistake() {
-        return hasUserMistake;
-    }
-
-    public static int makeRandomNumber(int rangeOfRandomNumbers) {
-        return (int) (Math.random() * rangeOfRandomNumbers);
-    }
-
-    public static void checkAnswersOfUser(String correctAnswer, String answer) {
-        if (correctAnswer.equals(answer)) {
-            System.out.println("Correct!");
-        } else {
-            hasUserMistake = true;
-            System.out.print("'" + answer + "'" + " is wrong answer ;(. ");
-            System.out.println("Correct answer was " + "'" + correctAnswer + "'" + ".");
-            System.out.println("Let's try again, " + Cli.getUserName() + "!");
+    public static void makeGame(String rule, String[] questions, String[] correctAnswers) {
+        showRuleOfGame(rule);
+        var i = 0;
+        boolean isNoMistake = true;
+        while (i < NUMBER_OF_ATTEMPTS && isNoMistake) {
+            showQuestionOfGame(questions[i]);
+            String answer = getAnswerOfUser();
+            isNoMistake = correctAnswers[i].equals(answer);
+            giveRespondToUser(isNoMistake, answer, correctAnswers[i]);
+            i++;
         }
-    }
-
-    public static void checkHasUserMistake() {
-        if (!hasUserMistake) {
-            System.out.println("Congratulations, " + Cli.getUserName() + "!");
-        }
+        congratulateUserOrNot(isNoMistake);
     }
 
     public static void showRuleOfGame(String rule) {
@@ -43,5 +29,21 @@ public class Engine {
     public static String getAnswerOfUser() {
         Cli.readInput();
         return Cli.getInput();
+    }
+
+    public static void giveRespondToUser(boolean isNoMistake, String answer, String correctAnswer) {
+        if (isNoMistake) {
+            System.out.println("Correct!");
+        } else {
+            System.out.print("'" + answer + "'" + " is wrong answer ;(. ");
+            System.out.println("Correct answer was " + "'" + correctAnswer + "'" + ".");
+            System.out.println("Let's try again, " + Cli.getUserName() + "!");
+        }
+    }
+
+    public static void congratulateUserOrNot(boolean isNoMistake) {
+        if (isNoMistake) {
+            System.out.println("Congratulations, " + Cli.getUserName() + "!");
+        }
     }
 }
