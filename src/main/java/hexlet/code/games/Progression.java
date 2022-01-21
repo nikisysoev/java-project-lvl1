@@ -4,31 +4,28 @@ import hexlet.code.Engine;
 import java.util.Arrays;
 
 public class Progression {
-    private static final int RANGE_OF_RANDOM_NUMBERS_PROGRESSION = 5;
     private static final String RULE_OF_THE_GAME = "What number is missing in the progression?";
+    private static final int NUMBER_OF_ATTEMPTS = 3;
+    private static final int RANGE_OF_RANDOM_NUMBERS = 99;
+    private static final int RANGE_OF_RANDOM_NUMBERS_PROGRESSION = 5;
 
     public static void start() {
-        Engine.showRuleOfGame(RULE_OF_THE_GAME);
-
-        var i = 0;
-        while (i < Engine.NUMBER_OF_ATTEMPTS && !Engine.getHasUserMistake()) {
-            int firstNumbOfProgression = Engine.makeRandomNumber(Engine.RANGE_OF_RANDOM_NUMBERS);
-            int addition = Engine.makeRandomNumber(RANGE_OF_RANDOM_NUMBERS_PROGRESSION) + 1;
+        String[] questions = new String[NUMBER_OF_ATTEMPTS];
+        String[] correctAnswers = new String[NUMBER_OF_ATTEMPTS];
+        for (int i = 0; i < NUMBER_OF_ATTEMPTS; i++) {
+            int firstNumbOfProgression = makeRandomNumber(RANGE_OF_RANDOM_NUMBERS);
+            int addition = makeRandomNumber(RANGE_OF_RANDOM_NUMBERS_PROGRESSION) + 1;
             int countNumInProgression = RANGE_OF_RANDOM_NUMBERS_PROGRESSION + addition - 1;
-            int positionOfUnknownNum = Engine.makeRandomNumber(countNumInProgression);
-
+            int positionOfUnknownNum = makeRandomNumber(countNumInProgression);
             String[] allNumbers = new String[countNumInProgression];
-            String question = makeProgrWithDots(allNumbers, positionOfUnknownNum, firstNumbOfProgression, addition);
-            Engine.showQuestionOfGame(question);
-
-            String correctAnswer = getCorrectAnswer(firstNumbOfProgression, addition, positionOfUnknownNum);
-
-            String answer = Engine.getAnswerOfUser();
-
-            Engine.checkAnswersOfUser(correctAnswer, answer);
-            i++;
+            questions[i] = makeProgrWithDots(allNumbers, positionOfUnknownNum, firstNumbOfProgression, addition);
+            correctAnswers[i] = getCorrectAnswer(firstNumbOfProgression, addition, positionOfUnknownNum);
         }
-        Engine.checkHasUserMistake();
+        Engine.makeGame(RULE_OF_THE_GAME, questions, correctAnswers);
+    }
+
+    public static int makeRandomNumber(int rangeOfRandomNumbers) {
+        return (int) (Math.random() * rangeOfRandomNumbers);
     }
 
     public static String getCorrectAnswer(int firstNumberOfProgression, int addition, int positionOfUnknownNumber) {

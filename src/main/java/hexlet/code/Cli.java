@@ -11,7 +11,7 @@ public class Cli {
     }
 
     public static void setInput(String someInput) {
-        Cli.input = someInput;
+        input = someInput;
     }
 
     public static String getUserName() {
@@ -19,7 +19,7 @@ public class Cli {
     }
 
     public static void setUserName(String name) {
-        Cli.userName = name;
+        userName = name;
     }
 
     public static void greet() {
