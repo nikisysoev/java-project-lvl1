@@ -1,50 +1,54 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Settings;
 import java.util.Arrays;
 
 public class Progression {
     private static final String RULE_OF_THE_GAME = "What number is missing in the progression?";
-    private static final int NUMBER_OF_ATTEMPTS = 3;
-    private static final int RANGE_OF_RANDOM_NUMBERS = 99;
-    private static final int RANGE_OF_RANDOM_NUMBERS_PROGRESSION = 5;
+    private static final int RANGE_OF_PROGRESSION = 6;
+    private static final int ADDITION = 11;
 
     public static void start() {
-        String[] questions = new String[NUMBER_OF_ATTEMPTS];
-        String[] correctAnswers = new String[NUMBER_OF_ATTEMPTS];
-        for (int i = 0; i < NUMBER_OF_ATTEMPTS; i++) {
-            int firstNumbOfProgression = makeRandomNumber(RANGE_OF_RANDOM_NUMBERS);
-            int addition = makeRandomNumber(RANGE_OF_RANDOM_NUMBERS_PROGRESSION) + 1;
-            int countNumInProgression = RANGE_OF_RANDOM_NUMBERS_PROGRESSION + addition - 1;
-            int positionOfUnknownNum = makeRandomNumber(countNumInProgression);
-            String[] allNumbers = new String[countNumInProgression];
-            questions[i] = makeProgrWithDots(allNumbers, positionOfUnknownNum, firstNumbOfProgression, addition);
-            correctAnswers[i] = getCorrectAnswer(firstNumbOfProgression, addition, positionOfUnknownNum);
+        String[][] questionsAndCorrectAnswers = new String[2][Settings.ATTEMPTS];
+
+        for (int i = 0; i < Settings.ATTEMPTS; i++) {
+            int[] progression = makeProgression();
+            int positionOfHiddenNum = Settings.randomNum(progression.length);
+
+            questionsAndCorrectAnswers[1][i] = String.valueOf(progression[positionOfHiddenNum]);
+
+            questionsAndCorrectAnswers[0][i] = hideNumber(progression, positionOfHiddenNum);
         }
-        Engine.makeGame(RULE_OF_THE_GAME, questions, correctAnswers);
+        Engine.makeGame(RULE_OF_THE_GAME, questionsAndCorrectAnswers);
     }
 
-    public static int makeRandomNumber(int rangeOfRandomNumbers) {
-        return (int) (Math.random() * rangeOfRandomNumbers);
-    }
+    public static int[] makeProgression() {
+        int addition = Settings.randomNum(ADDITION);
 
-    public static String getCorrectAnswer(int firstNumberOfProgression, int addition, int positionOfUnknownNumber) {
-        int correctAnswer = firstNumberOfProgression + positionOfUnknownNumber * addition;
-        return Integer.toString(correctAnswer);
-    }
+        int fromZeroToFive = Settings.randomNum(RANGE_OF_PROGRESSION);
+        int countNumInProgression = RANGE_OF_PROGRESSION + fromZeroToFive;
 
-    public static String makeProgrWithDots(String[] allNum, int posOfUnknownNum, int firstNumOfProgr, int addition) {
-        for (int k = 0; k < allNum.length; k++) {
-            if (k != posOfUnknownNum) {
-                allNum[k] = Integer.toString(firstNumOfProgr + k * addition);
-            } else {
-                allNum[k] = "..";
-            }
+        int firstNumOfProgression = Settings.randomNum();
+
+        int[] progression = new int[countNumInProgression];
+        progression[0] = firstNumOfProgression;
+
+        for (int i = 1; i < progression.length; i++) {
+            progression[i] = progression[i - 1] + addition;
         }
-        String question = Arrays.toString(allNum);
-        return question.replace("[", "").
-                replace("]", "").
-                replace(",", "");
+        return progression;
+    }
+
+    public static String hideNumber(int[] progression, int positionOfHiddenNum) {
+        progression[positionOfHiddenNum] = -1;
+
+        String question = Arrays.toString(progression);
+
+        return question.replace("[", "")
+                .replace("]", "")
+                .replace(",", "")
+                .replace("-1", "..");
     }
 }
 
