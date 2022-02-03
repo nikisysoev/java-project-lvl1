@@ -8,10 +8,6 @@ application {
     mainClass = 'hexlet.code.App'
 }
 
-compileJava {
-    options.release = 16
-}
-
 repositories {
     mavenCentral()
 }
