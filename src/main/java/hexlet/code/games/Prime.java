@@ -14,30 +14,25 @@ public class Prime {
 
             questionsWithAnswers[0][i] = String.valueOf(randomNumber);
 
-            int count = findNumberOfDivisors(randomNumber);
-
-            questionsWithAnswers[1][i] = getCorrectAnswer(count);
+            questionsWithAnswers[1][i] = getCorrectAnswer(isPrime(randomNumber));
         }
         Engine.makeGame(RULE_OF_THE_GAME, questionsWithAnswers);
     }
 
-    public static String getCorrectAnswer(int count) {
-        return (count == 1) ? "yes" : "no";
+    public static String getCorrectAnswer(boolean isPrime) {
+        return isPrime ? "yes" : "no";
     }
 
-    public static int findNumberOfDivisors(int randomNumber) {
+    public static boolean isPrime(int randomNumber) {
         if (randomNumber == 0 || randomNumber == 1) {
-            return -1;
+            return false;
         }
 
-        int count = 1;
-        int i = 2;
-        while (count == 1 && i <= randomNumber / 2) {
+        for (int i = 2; i <= randomNumber / 2; i++) {
             if (randomNumber % i == 0) {
-                count++;
+                return false;
             }
-            i++;
         }
-        return count;
+        return true;
     }
 }
