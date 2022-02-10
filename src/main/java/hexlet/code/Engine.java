@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class Engine {
     public static void makeGame(String ruleOfTheGame, String[][] questionsAndCorrectAnswers) {
-        String nameOfUser  = Cli.greet();
+        findOutTheName();
+        String nameOfUser =  getAnswerOfUser();
+        System.out.println("Hello, " + nameOfUser + "!");
 
         System.out.println(ruleOfTheGame);
 
@@ -14,18 +16,21 @@ public class Engine {
             System.out.println("Question: " + questionsAndCorrectAnswers[0][i]);
             System.out.print("Your answer: ");
 
-            String[][] answers = new String[2][Settings.ATTEMPTS];
+            String userAnswer = getAnswerOfUser();
+            String correctAnswer = questionsAndCorrectAnswers[1][i];
 
-            answers[0][i] = getAnswerOfUser();
-            answers[1][i] = questionsAndCorrectAnswers[1][i];
+            isNoMistake = correctAnswer.equals(userAnswer);
 
-            isNoMistake = answers[1][i].equals(answers[0][i]);
-
-            giveRespond(isNoMistake, answers[0][i], answers[1][i], nameOfUser);
+            giveRespond(isNoMistake, userAnswer, correctAnswer, nameOfUser);
             i++;
         } while (i < Settings.ATTEMPTS && isNoMistake);
 
         congratulateUserOrNot(isNoMistake, nameOfUser);
+    }
+
+    private static void findOutTheName() {
+        System.out.println("\nWelcome to the Brain Games!");
+        System.out.print("May I have your name? ");
     }
 
     private static String getAnswerOfUser() {

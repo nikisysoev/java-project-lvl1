@@ -28,7 +28,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         switch (scanner.next()) {
-            case "1" -> Cli.greet();
+            case "1" -> Cli.greetUser();
             case "2" -> Even.start();
             case "3" -> Calc.start();
             case "4" -> GCD.start();
