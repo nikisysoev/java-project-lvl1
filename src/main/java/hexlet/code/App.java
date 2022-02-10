@@ -21,13 +21,13 @@ public class App {
         for (String game : games) {
             System.out.println(game);
         }
+
         System.out.print("Your choice: ");
     }
 
     private static void chooseGame() {
-        Scanner scanner = new Scanner(System.in);
-
-        switch (scanner.next()) {
+        String game = Utils.getAnswerOfUser();
+        switch (game) {
             case "1" -> Cli.greetUser();
             case "2" -> Even.start();
             case "3" -> Calc.start();

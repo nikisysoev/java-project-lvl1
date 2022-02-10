@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Engine {
     public static void makeGame(String ruleOfTheGame, String[][] questionsAndCorrectAnswers) {
         findOutTheName();
-        String nameOfUser =  getAnswerOfUser();
+        String nameOfUser =  Utils.getAnswerOfUser();
         System.out.println("Hello, " + nameOfUser + "!");
 
         System.out.println(ruleOfTheGame);
@@ -16,7 +16,7 @@ public class Engine {
             System.out.println("Question: " + questionsAndCorrectAnswers[0][i]);
             System.out.print("Your answer: ");
 
-            String userAnswer = getAnswerOfUser();
+            String userAnswer = Utils.getAnswerOfUser();
             String correctAnswer = questionsAndCorrectAnswers[1][i];
 
             isNoMistake = correctAnswer.equals(userAnswer);
@@ -31,11 +31,6 @@ public class Engine {
     private static void findOutTheName() {
         System.out.println("\nWelcome to the Brain Games!");
         System.out.print("May I have your name? ");
-    }
-
-    private static String getAnswerOfUser() {
-        Scanner scanner = new Scanner(System.in);
-        return scanner.next();
     }
 
     private static void giveRespond(boolean isNoMistake, String userAnswer, String correctAnswer, String nameOfUser) {
