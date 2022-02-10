@@ -14,9 +14,13 @@ public class Even {
 
             questionsWithAnswers[0][i] = String.valueOf(randomNumber);
 
-            questionsWithAnswers[1][i] = getCorrectAnswer(randomNumber % 2 == 0);
+            questionsWithAnswers[1][i] = getCorrectAnswer(isEven(randomNumber));
         }
         Engine.makeGame(RULE_OF_THE_GAME, questionsWithAnswers);
+    }
+
+    private static boolean isEven(int randomNumber) {
+        return randomNumber % 2 == 0;
     }
 
     private static String getCorrectAnswer(boolean isEven) {
