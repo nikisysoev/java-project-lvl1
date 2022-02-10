@@ -7,7 +7,7 @@ public class Prime {
     private static final String RULE_OF_THE_GAME = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
     public static void start() {
-        String[][] questionsWithAnswers = new String[2][Settings.ATTEMPTS];
+        final String[][] questionsWithAnswers = new String[2][Settings.ATTEMPTS];
 
         for (int i = 0; i < Settings.ATTEMPTS; i++) {
             int randomNumber = Settings.randomNum();

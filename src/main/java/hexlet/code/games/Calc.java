@@ -9,7 +9,7 @@ public class Calc {
     private static final String[] OPERATIONS = {"+", "-", "*"};
 
     public static void start() {
-        String[][] questionsWithAnswers = new String[2][Settings.ATTEMPTS];
+        final String[][] questionsWithAnswers = new String[2][Settings.ATTEMPTS];
 
         for (int i = 0; i < Settings.ATTEMPTS; i++) {
             int randomNumber1 = Settings.randomNum();
@@ -24,7 +24,7 @@ public class Calc {
     }
 
     private static String makeRandomOperation() {
-        int randomNumber = Settings.randomNum(RANGE_OF_OPERATIONS);
+        final int randomNumber = Settings.randomNum(RANGE_OF_OPERATIONS);
         return OPERATIONS[randomNumber];
     }
 

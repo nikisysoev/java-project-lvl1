@@ -25,7 +25,8 @@ public class App {
     }
 
     private static void chooseGame() {
-        String game = Utils.getAnswerOfUser();
+        final String game = Utils.getAnswerOfUser();
+
         switch (game) {
             case "1" -> Cli.greetUser();
             case "2" -> Even.start();

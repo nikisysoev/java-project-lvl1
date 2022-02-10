@@ -3,7 +3,7 @@ package hexlet.code;
 public class Engine {
     public static void makeGame(String ruleOfTheGame, String[][] questionsAndCorrectAnswers) {
         findOutTheName();
-        String nameOfUser =  Utils.getAnswerOfUser();
+        final String nameOfUser =  Utils.getAnswerOfUser();
         System.out.println("Hello, " + nameOfUser + "!");
 
         System.out.println(ruleOfTheGame);

@@ -10,7 +10,7 @@ public class Progression {
     private static final int ADDITION = 11;
 
     public static void start() {
-        String[][] questionsAndCorrectAnswers = new String[2][Settings.ATTEMPTS];
+        final String[][] questionsAndCorrectAnswers = new String[2][Settings.ATTEMPTS];
 
         for (int i = 0; i < Settings.ATTEMPTS; i++) {
             int[] progression = makeProgression();
@@ -24,14 +24,14 @@ public class Progression {
     }
 
     private static int[] makeProgression() {
-        int addition = Settings.randomNum(ADDITION);
+        final int addition = Settings.randomNum(ADDITION);
 
-        int fromZeroToFive = Settings.randomNum(RANGE_OF_PROGRESSION);
-        int countNumInProgression = RANGE_OF_PROGRESSION + fromZeroToFive;
+        final int fromZeroToFive = Settings.randomNum(RANGE_OF_PROGRESSION);
+        final int countNumInProgression = RANGE_OF_PROGRESSION + fromZeroToFive;
 
-        int firstNumOfProgression = Settings.randomNum();
+        final int firstNumOfProgression = Settings.randomNum();
 
-        int[] progression = new int[countNumInProgression];
+        final int[] progression = new int[countNumInProgression];
         progression[0] = firstNumOfProgression;
 
         for (int i = 1; i < progression.length; i++) {
