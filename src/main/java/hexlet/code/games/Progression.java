@@ -23,7 +23,7 @@ public class Progression {
         Engine.makeGame(RULE_OF_THE_GAME, questionsAndCorrectAnswers);
     }
 
-    public static int[] makeProgression() {
+    private static int[] makeProgression() {
         int addition = Settings.randomNum(ADDITION);
 
         int fromZeroToFive = Settings.randomNum(RANGE_OF_PROGRESSION);
@@ -40,7 +40,7 @@ public class Progression {
         return progression;
     }
 
-    public static String hideNumber(int[] progression, int positionOfHiddenNum) {
+    private static String hideNumber(int[] progression, int positionOfHiddenNum) {
         progression[positionOfHiddenNum] = -1;
 
         String question = Arrays.toString(progression);

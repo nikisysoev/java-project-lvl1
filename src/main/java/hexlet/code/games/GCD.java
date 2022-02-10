@@ -21,7 +21,7 @@ public class GCD {
         Engine.makeGame(RULE_OF_THE_GAME, questionsWithAnswers);
     }
 
-    public static int getCorrectAnswer(int[] randomNumbers) {
+    private static int getCorrectAnswer(int[] randomNumbers) {
         int min = Math.min(randomNumbers[0], randomNumbers[1]);
         int max = Math.max(randomNumbers[0], randomNumbers[1]);
 

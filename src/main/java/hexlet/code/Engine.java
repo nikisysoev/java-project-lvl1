@@ -28,12 +28,12 @@ public class Engine {
         congratulateUserOrNot(isNoMistake, nameOfUser);
     }
 
-    public static String getAnswerOfUser() {
+    private static String getAnswerOfUser() {
         Scanner scanner = new Scanner(System.in);
         return scanner.next();
     }
 
-    public static void giveRespond(boolean isNoMistake, String userAnswer, String correctAnswer, String nameOfUser) {
+    private static void giveRespond(boolean isNoMistake, String userAnswer, String correctAnswer, String nameOfUser) {
         if (isNoMistake) {
             System.out.println("Correct!");
         } else {
@@ -43,7 +43,7 @@ public class Engine {
         }
     }
 
-    public static void congratulateUserOrNot(boolean isNoMistake, String nameOfUser) {
+    private static void congratulateUserOrNot(boolean isNoMistake, String nameOfUser) {
         if (isNoMistake) {
             System.out.println("Congratulations, " + nameOfUser + "!");
         }

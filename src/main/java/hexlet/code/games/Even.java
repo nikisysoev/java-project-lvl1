@@ -19,7 +19,7 @@ public class Even {
         Engine.makeGame(RULE_OF_THE_GAME, questionsWithAnswers);
     }
 
-    public static String getCorrectAnswer(boolean isEven) {
+    private static String getCorrectAnswer(boolean isEven) {
         return isEven ? "yes" : "no";
     }
 }

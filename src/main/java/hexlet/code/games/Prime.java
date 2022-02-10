@@ -19,11 +19,11 @@ public class Prime {
         Engine.makeGame(RULE_OF_THE_GAME, questionsWithAnswers);
     }
 
-    public static String getCorrectAnswer(boolean isPrime) {
+    private static String getCorrectAnswer(boolean isPrime) {
         return isPrime ? "yes" : "no";
     }
 
-    public static boolean isPrime(int randomNumber) {
+    private static boolean isPrime(int randomNumber) {
         if (randomNumber == 0 || randomNumber == 1) {
             return false;
         }

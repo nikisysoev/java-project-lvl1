@@ -23,7 +23,7 @@ public class Calc {
         Engine.makeGame(RULE_OF_THE_GAME, questionsWithAnswers);
     }
 
-    public static String makeRandomOperation() {
+    private static String makeRandomOperation() {
         int randomNumber = Settings.randomNum(RANGE_OF_OPERATIONS);
 
         if (randomNumber == 0) {
@@ -35,7 +35,7 @@ public class Calc {
         return "*";
     }
 
-    public static int getCorrectAnswer(int[] randomNumbers, String randomOperation) {
+    private static int getCorrectAnswer(int[] randomNumbers, String randomOperation) {
         if (randomOperation.equals("+")) {
             return randomNumbers[0] + randomNumbers[1];
         }
