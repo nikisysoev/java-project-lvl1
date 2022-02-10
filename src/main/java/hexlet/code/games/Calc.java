@@ -6,42 +6,35 @@ import hexlet.code.Settings;
 public class Calc {
     private static final String RULE_OF_THE_GAME = "What is the result of the expression?";
     private static final int RANGE_OF_OPERATIONS = 3;
+    private static final String[] OPERATIONS = {"+", "-", "*"};
 
     public static void start() {
         String[][] questionsWithAnswers = new String[2][Settings.ATTEMPTS];
 
         for (int i = 0; i < Settings.ATTEMPTS; i++) {
-            int[] randomNumbers = new int[2];
-            randomNumbers[0] = Settings.randomNum();
-            randomNumbers[1] = Settings.randomNum();
+            int randomNumber1 = Settings.randomNum();
+            int randomNumber2 = Settings.randomNum();
 
             String randomOperation = makeRandomOperation();
 
-            questionsWithAnswers[0][i] =  randomNumbers[0] + " " + randomOperation + " " + randomNumbers[1];
-            questionsWithAnswers[1][i] = String.valueOf(getCorrectAnswer(randomNumbers, randomOperation));
+            questionsWithAnswers[0][i] = randomNumber1 + " " + randomOperation + " " + randomNumber2;
+            questionsWithAnswers[1][i] = String.valueOf(calculate(randomNumber1, randomNumber2, randomOperation));
         }
         Engine.makeGame(RULE_OF_THE_GAME, questionsWithAnswers);
     }
 
     private static String makeRandomOperation() {
         int randomNumber = Settings.randomNum(RANGE_OF_OPERATIONS);
-
-        if (randomNumber == 0) {
-            return "+";
-        }
-        if (randomNumber == 1) {
-            return "-";
-        }
-        return "*";
+        return OPERATIONS[randomNumber];
     }
 
-    private static int getCorrectAnswer(int[] randomNumbers, String randomOperation) {
+    private static int calculate(int randomNumber1, int randomNumber2, String randomOperation) {
         if (randomOperation.equals("+")) {
-            return randomNumbers[0] + randomNumbers[1];
+            return randomNumber1 + randomNumber2;
         }
         if (randomOperation.equals("-")) {
-            return randomNumbers[0] - randomNumbers[1];
+            return randomNumber1 - randomNumber2;
         }
-        return randomNumbers[0] * randomNumbers[1];
+        return randomNumber1 * randomNumber2;
     }
 }

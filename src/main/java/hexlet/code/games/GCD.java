@@ -10,20 +10,19 @@ public class GCD {
         String[][] questionsWithAnswers = new String[2][Settings.ATTEMPTS];
 
         for (int i = 0; i < Settings.ATTEMPTS; i++) {
-            int[] randomNumbers = new int[2];
-            randomNumbers[0] = Settings.randomNum();
-            randomNumbers[1] = Settings.randomNum();
+            int randomNumber1 = Settings.randomNum();
+            int randomNumber2 = Settings.randomNum();
 
-            questionsWithAnswers[0][i] = randomNumbers[0] + " " + randomNumbers[1];
+            questionsWithAnswers[0][i] = randomNumber1 + " " + randomNumber2;
 
-            questionsWithAnswers[1][i] = String.valueOf(getCorrectAnswer(randomNumbers));
+            questionsWithAnswers[1][i] = String.valueOf(getGcd(randomNumber1, randomNumber2));
         }
         Engine.makeGame(RULE_OF_THE_GAME, questionsWithAnswers);
     }
 
-    private static int getCorrectAnswer(int[] randomNumbers) {
-        int min = Math.min(randomNumbers[0], randomNumbers[1]);
-        int max = Math.max(randomNumbers[0], randomNumbers[1]);
+    private static int getGcd(int randomNumber1, int randomNumber2) {
+        int min = Math.min(randomNumber1, randomNumber2);
+        int max = Math.max(randomNumber1, randomNumber2);
 
         while (min != 0) {
             int remainder = max % min;
